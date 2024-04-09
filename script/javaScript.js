@@ -4,13 +4,19 @@ Create function that returns random either Rock, Paper, Scissor
 Create function that plays a single round of Rock paper Scissors
 */
 
+let selectionEvent = document.querySelector("#selection")
 
+let playerHand = selectionEvent.addEventListener('click', function(event) {
+    if (event.target.id !== "selection") return playRound(event.target.id, getComputerChoice())
+    else console.log("click on buttons!")
+})
 
 function getComputerChoice () {
     let computerHand = ["Rock", "Paper", "Scissor"]
     
     return computerHand[Math.floor(Math.random() * computerHand.length)]
 }
+
 
 function playRound (playerSelection, computerSelection) {
 
@@ -44,31 +50,7 @@ function playRound (playerSelection, computerSelection) {
     }
 }
 
-function getPlayerChoice () {
-    const playerSelection = prompt("To start a game write one of following Rock, Paper, Scissor");
-    return playerSelection
-}
-
 function playGame () {
-    const rounds = 5;
-    let playerScore = 0;
-    let computerScore = 0;
-
-    for (let i = 1; i <= rounds; i++) {
-        const computerSelection = getComputerChoice();
-        const playerSelection = getPlayerChoice();
-        
-        let checRoundWinner = playRound(playerSelection, computerSelection);
-
-        if (checRoundWinner.indexOf("Win!") != -1) playerScore += 1
-        else if (checRoundWinner != "Draw!") computerScore += 1
-    }
-
-    playerScore > computerScore ? console.log(`You have won with score ${playerScore}`) : 
-    computerScore > playerScore ? console.log(`Computer won with score ${computerScore} (your score ${playerScore})`) : 
-    console.log(`Draw you and computer had same score of ${playerScore}`)
-
-
 
 }
 
